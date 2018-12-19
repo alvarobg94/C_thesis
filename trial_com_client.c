@@ -34,7 +34,7 @@ connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 
 gettimeofday(&t0, NULL);
 while(flag==1) {
-  gettimeofday(&t1, NULL);
+
   send(sock , data_send , sizeof(data_send) , 0 );
   i++;
   //nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
@@ -43,8 +43,6 @@ while(flag==1) {
   {
     flag=0;
   }
-  gettimeofday(&t2, NULL);
-  t_s=(t2.tv_sec - t1.tv_sec) + (t2.tv_usec - t1.tv_usec) / 1000000.0f;
 }
 
 
