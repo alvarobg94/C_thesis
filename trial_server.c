@@ -6,8 +6,11 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <sys/time.h>
 #define PORT 8080
 int main(){
+	struct timeval t0,t1,t2,tf;
+	double cpu_time_used;
 	int server_fd, new_socket, valread; 
 	struct sockaddr_in address; 
 	int opt = 1; 
@@ -27,9 +30,13 @@ int main(){
 	{
 		printf("%s\n","connected" );
 	}
+    gettimeofday(&t0, NULL);
 	valread = read( new_socket , buffer, 1024); 
 	printf("%s\n",buffer );
 	send(new_socket , numbers , sizeof(numbers) , 0 );
+	gettimeofday(&tf, NULL);
+	cpu_time_used =(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
+	printf("Total time is %f",cpu_time_used);
 	printf("Hello message sent\n"); 
 return 0;  
 }
