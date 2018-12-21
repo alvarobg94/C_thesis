@@ -19,7 +19,7 @@
 int main() {
 int data,fd,reg;
 fd=  wiringPiI2CSetup (DevAddr);
-data= wiringPiI2CRead(fd) ;
+data= wiringPiI2CRead8reg(fd,0x00) ;
 printf("%d\n",data );
 
 return(0);
