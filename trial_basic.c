@@ -17,9 +17,9 @@
 ///////////////////////////////////////FUNCTIONS
 //////////////////////////////////////////////// MAIN
 int main() {
-int data,fd;
+int data,fd,reg;
 fd=  wiringPiI2CSetup (DevAddr);
-data= wiringPiI2CReadReg8 (int fd, int reg) ;
+data= wiringPiI2CRead(fd) ;
 printf("%d\n",data );
 
 return(0);
