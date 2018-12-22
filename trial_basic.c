@@ -60,7 +60,7 @@ int Byte_swapper(int data16)
 }
 //////////////////////////////////////////////// MAIN
 int main() {
-   int data,fd,reg,num1,numswap;
+   int data,fd,reg,num1,numswap,i;
    long long t_delay=5e4;
    num1= B_convert | Mux_com_0;
    num1= num1 | Amp_1;
@@ -72,14 +72,16 @@ int main() {
    num1=num1 | COMP_QUE_N;
    numswap=Byte_swapper(num1);
    fd=  wiringPiI2CSetup (DevAddr);
-
-   while(i<20)
+   i=0;
+   while(i<20){
    data= wiringPiI2CReadReg16(fd,0x00) ;
    data=Byte_swapper(data);
    data=data>>4;
    printf("%d\n",data );
    wiringPiI2CWriteReg16(fd,0x01,numswap);
    nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
+   i=i-1;
+   }
 
 return(0);
 }
