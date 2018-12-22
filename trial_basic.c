@@ -61,7 +61,9 @@ int Byte_swapper(int data16)
 //////////////////////////////////////////////// MAIN
 int main() {
    int data,fd,reg,num1,numswap,i;
-   long long t_delay=5e4;
+   long long t_delay=1e6;
+   double t_s=0;
+   struct timeval t1,t2,t0,tf;
    num1= B_convert | Mux_com_0;
    num1= num1 | Amp_1;
    num1=num1 | B_sing;
@@ -73,6 +75,7 @@ int main() {
    numswap=Byte_swapper(num1);
    fd=  wiringPiI2CSetup (DevAddr);
    i=0;
+   gettimeofday(&t0, NULL);
    while(i<20){
    data= wiringPiI2CReadReg16(fd,0x00) ;
    data=Byte_swapper(data);
@@ -86,6 +89,8 @@ int main() {
    printf("%x\n",(data&0x0080));
    i=i+1;
    }
-
-return(0);
+   gettimeofday(&t1, NULL);
+   t_s=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
+  printf("took %f\n", t_s);
+  return(0);
 }
