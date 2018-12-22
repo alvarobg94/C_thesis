@@ -80,6 +80,8 @@ int main() {
    printf("%d\n",data );
    wiringPiI2CWriteReg16(fd,0x01,numswap);
    nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
+   data= wiringPiI2CReadReg16(fd,0x01) ;
+   printf("%x\n",(data&0x0080));
    i=i+1;
    }
 
