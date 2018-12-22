@@ -72,16 +72,14 @@ int main() {
    num1=num1 | COMP_QUE_N;
    numswap=Byte_swapper(num1);
    fd=  wiringPiI2CSetup (DevAddr);
+
+   while(i<20)
    data= wiringPiI2CReadReg16(fd,0x00) ;
    data=Byte_swapper(data);
    data=data>>4;
    printf("%d\n",data );
    wiringPiI2CWriteReg16(fd,0x01,numswap);
    nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
-   data= wiringPiI2CReadReg16(fd,0x00) ;
-   data=Byte_swapper(data);
-   data=data>>4;
-   printf("%d\n",data );
 
 return(0);
 }
