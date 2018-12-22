@@ -80,7 +80,7 @@ int main() {
    printf("%d\n",data );
    wiringPiI2CWriteReg16(fd,0x01,numswap);
    nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
-   i=i-1;
+   i=i+1;
    }
 
 return(0);
