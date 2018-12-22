@@ -65,7 +65,7 @@ int main() {
    num1= B_convert | Mux_com_0;
    num1= num1 | Amp_1;
    num1=num1 | B_sing;
-   num1=num1 | DR_3300;
+   num1=num1 | DR_128;
    num1=num1 | COMP_MODE_T;
    num1=num1 | COM_POL_L;
    num1=num1 | COMP_LN;
