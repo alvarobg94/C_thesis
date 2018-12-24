@@ -49,7 +49,7 @@
 #define COMP_QUE_N 0x0003
 /////////////////GLOBAL VARIABLES
 int DATA_SEND[4]={0,0,0,0};
-int CONFIG_V[4]={0,0,0,0};
+//int CONFIG_V[4]={0,0,0,0};
 //fd=  wiringPiI2CSetup (DevAddr);
 
 ///////////////////////////////////////THREAD FUNCTIONS
@@ -168,13 +168,14 @@ int Config_Default(int Config_16num)
 //////////////////////////////////////////////// MAIN
 int main() {
    int data,fd,reg,Config1,Config2,Config3,Config4,i;
-   long long t_delay=1e5;
+   int CONFIG_V[4]={0,0,0,0};
+   long long t_delay=5e5;
    double t_s=0;
    struct timeval t1,t2,t0,tf;
    //pthread_t thread1,thread2,thread3,thread4; 
    //pthread_create(&thread_id, NULL, UserGUI, NULL);
 
-   //fd=  wiringPiI2CSetup (DevAddr);
+   fd=  wiringPiI2CSetup (DevAddr);
    i=0;
 
    ///////////////////////WRITNG REGISTER CONFIGURATION
@@ -214,30 +215,27 @@ int main() {
    Config4=Byte_swapper(Config4);
    CONFIG_V[3]=Config4;
 
-
-
    gettimeofday(&t0, NULL);
-   while(i<20)
+   while(i<100)
      {
     for (int j = 0; j <4; j++)
     {
-      /* code */
-    
+     
      wiringPiI2CWriteReg16(fd,0x01,CONFIG_V[j]);
      nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
      data= wiringPiI2CReadReg16(fd,0x00) ;
      data=Byte_swapper(data);
      DATA_SEND[j]=data>>4;
-     i=i+1;
      }
    for (int j = 0; j < 4; ++j)
    {
-     printf("%d  \n",DATA_SEND[j] );
+     printf("%d ",DATA_SEND[j] );
    }
    printf("\n");
+   i++;
    }
 
-   gettimeofday(&t1, NULL);
+   gettimeofday(&tf, NULL);
    t_s=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
   printf("took %f\n", t_s);
   return(0);
