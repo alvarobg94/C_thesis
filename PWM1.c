@@ -94,7 +94,6 @@ int main() {
 
      nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
 
-     data=Byte_swapper(data);
      DATA_SEND[j]=data>>4;
      }
 
