@@ -185,7 +185,7 @@ int main() {
     memset(&serv_addr, '0', sizeof(serv_addr));
     serv_addr.sin_family = AF_INET; 
     serv_addr.sin_port = htons(PORT); 
-    inet_pton(AF_INET, "192.168.0.20", &serv_addr.sin_addr); 
+    inet_pton(AF_INET, "10.16.184.180", &serv_addr.sin_addr); 
     // PROGRAM
     connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
     //pthread_t thread1,thread2,thread3,thread4; 
@@ -258,7 +258,6 @@ int main() {
    Config4=Config_Mode(Config4,0);
    Config4=Byte_swapper(Config4);
    CONFIG_V[3]=Config4;
-   printf("%s\n","hola");
    gettimeofday(&t0, NULL);
    while(flag==1)
     {
