@@ -54,7 +54,20 @@ int DATA_SEND[4]={0,0,0,0};
 //fd=  wiringPiI2CSetup (DevAddr);
 
 ///////////////////////////////////////THREAD FUNCTIONS
-
+int flag=1;
+///////////////////////////////////////FUNCTIONS
+void *UserGUI(void *vargp) 
+{   
+    char command[1];
+    flag=1;
+    while (flag==1){
+      scanf("%s",command);
+      if (strcmp(command,"s")==0){
+        flag=0;}}
+ 
+    printf("Thread interface closing everything \n"); 
+    return NULL; 
+} 
 
 
 ///////////////////////////////////////FUNCTIONS
@@ -68,35 +81,65 @@ int main() {
    struct timeval t1,t2,t0,tf;
    unsigned red,yellow,green,red2;
    red=14;yellow=15;green=17;red2=27;
-   //pthread_t thread1,thread2,thread3,thread4; 
-   //pthread_create(&thread_id, NULL, UserGUI, NULL);
+   pthread_t thread_id;
+   pthread_create(&thread_id, NULL, UserGUI, NULL);
 
 
    if (gpioInitialise() < 0)
     {
       printf("pigpio initialisation failed.\n");
     }
-   gpioPWM(red, 200);
-   gpioPWM(green, 250)
-   gpioPWM(yellow, 200)
-   gpioPWM(red2, 100)
+   gpioSetPWMrange(red,2000);
+   gpioSetPWMrange(yellow,2000);
+   gpioSetPWMrange(green,2000);
+   gpioSetPWMrange(red2,2000);
+   gpioSetPWMfrequency(red,8000);
+   gpioSetPWMfrequency(yellow,8000);
+   gpioSetPWMfrequency(green,8000);
+   gpioSetPWMfrequency(red2,8000);
+
+   gpioPWM(red, 0);
+   gpioPWM(green, 0);
+   gpioPWM(yellow, 0);
+   gpioPWM(red2, 0);
    i=0;
 
    ///////////////////////WRITNG REGISTER CONFIGURATION
 
-
+   i=1;
+   unsigned mr,mg,my,mr2;
+   mr=0;mg=500;my=1000;mr2=1999;
    gettimeofday(&t0, NULL);
-   while(i<100)
+   while(flag==1)
      {
-    for (int j = 0; j <4; j++)
+    mr++;mg++;my++;mr2++;
+    gpioPWM(red,mr );
+    gpioPWM(green, mg);
+    gpioPWM(yellow, my);
+    gpioPWM(red2, mr2);
     {
-     
-
-     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
-
-     DATA_SEND[j]=data>>4;
+      mr=0;
+    }
+    if (mg==2000)
+    {
+      mg=0;
+    }
+    if (my==2000)
+    {
+      my=0;
+    }
+    if (mr2==2000)
+    {
+      mr2=0;
+    }
+    nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
      }
 
+
+   gpioPWM(red, 0);
+   gpioPWM(green, 0);
+   gpioPWM(yellow, 0);
+   gpioPWM(red2, 0);
    gettimeofday(&tf, NULL);
    t_s=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
   printf("took %f\n", t_s);
