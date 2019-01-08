@@ -265,7 +265,10 @@ int main() {
      send(sock , DATA_SEND , sizeof(DATA_SEND) , 0 );
      valread = read(sock , data_rec, 20);
      printf("%d\n",data_rec[0]);
-     if (data_rec==close_vector){flag=0;printf("%s\n","salgo");}
+     if (data_rec[0]==close_vector[0])
+      {flag=0;
+      printf("%s\n","salgo");
+      }
      else{
      gpioPWM(magnet1r, data_rec[0]);
      gpioPWM(magnet1l, data_rec[1]);
