@@ -258,14 +258,15 @@ int main() {
    Config4=Config_Mode(Config4,0);
    Config4=Byte_swapper(Config4);
    CONFIG_V[3]=Config4;
-
+   printf("%s\n","hola");
    gettimeofday(&t0, NULL);
    while(flag==1)
     {
 
      send(sock , DATA_SEND , sizeof(DATA_SEND) , 0 );
      valread = read(sock , data_rec, 20);
-     if (data_rec==close_vector){flag=0;}
+     printf("%d\n",data_rec[0]);
+     if (data_rec==close_vector){flag=0;printf("%s\n","salgo");}
      else{
      gpioPWM(magnet1r, data_rec[0]);
      gpioPWM(magnet1l, data_rec[1]);
@@ -284,6 +285,7 @@ int main() {
      DATA_SEND[j]=data>>4;
      }
     }
+   printf("%s\n","exit while" );
    gpioPWM(magnet1r, 0);
    gpioPWM(magnet1l, 0);
    gpioPWM(magnet2r, 0);
