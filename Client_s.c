@@ -172,7 +172,7 @@ int main() {
     int data,Init,fd,reg,Config1,Config2,Config3,Config4;int CONFIG_V[4]={0,0,0,0};
     struct timeval t1,t2,t0,tf;
     unsigned magnet1r,magnet1l,magnet2r,magnet2l;
-    magnet1r=14;magnet1l=15;magnet2r=17;magnet2l=27;magnet3r=23;magnet3l=24;magnet4r=10;magnet4l=9;
+    magnet1r=14;magnet1l=15;magnet2r=17;magnet2l=27;
     struct sockaddr_in address, serv_addr; 
     int i,k,j,n_samples,n_data,SIZE_DATA,ml,server_fd, new_socket, valread,sock,addrlen,nano_to_micro;
     i=k=0; j=1; SIZE_DATA=3000;n_data=3;sock=0;nano_to_micro=1e3;addrlen=sizeof(address);
@@ -279,10 +279,6 @@ int main() {
    gpioPWM(magnet1l, 0);
    gpioPWM(magnet2r, 0);
    gpioPWM(magnet2l, 0);
-   gpioPWM(magnet3r, 0);
-   gpioPWM(magnet3l, 0);
-   gpioPWM(magnet4r, 0);
-   gpioPWM(magnet4l, 0);
    gettimeofday(&tf, NULL);
    t_s=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
    printf("took %f\n", t_s);
