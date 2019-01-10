@@ -84,7 +84,7 @@ int main() {
     printf("%f %f \n",t_s,v_out );
     ////Calculate time step
     gettimeofday(&t2, NULL);
-    t_s=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
+    t_s=(t2.tv_sec - t1.tv_sec) + (t2.tv_usec - t1.tv_usec) / 1000000.0f;
     i++;
     ////////append
     
