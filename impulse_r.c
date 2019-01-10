@@ -15,8 +15,8 @@
 int flag=1;
 int n_samples=100000;
 int n_data=2;
-int data[n_samples];
-int t_series[n_samples];
+int data[100000];
+int t_series[100000];
 for (int i = 0; i < n_samples; ++i)
 {
   data[i]=0;
@@ -45,7 +45,7 @@ int main() {
    int i,ml;
    i=ml=0;
    long long t_delay=1e7;
-   double t_s,v_out,mean_f,mean_ts,cpu_time_used;
+   double t_s,tnext,v_out,mean_f,mean_ts,cpu_time_used;
    t_s=v_out=0.0;
    struct timeval t1,t2,t0,tf;
    unsigned test_magnet,duty_cycle,dc_range;
@@ -73,7 +73,7 @@ int main() {
     gpioPWM(test_magnet,duty_cycle );
     v_out=duty_cycle/100;
     data[i]=v_out;
-    t_series[i]=t_next;
+    t_series[i]=t_s;
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
     //// Calculate next step
     duty_cycle++;
