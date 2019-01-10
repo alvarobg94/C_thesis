@@ -81,7 +81,7 @@ int main() {
     {
       duty_cycle=0;
     }
-    printf("dc is %d\n",duty_cycle );
+    printf("%f %f \n",t_s,v_out );
     ////Calculate time step
     gettimeofday(&t2, NULL);
     t_s=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
@@ -103,7 +103,7 @@ int main() {
    printf("Data cllection ended  with %d samples\n",i );
   /////////////////////////////////     TXT FILE GENERATION
    for(int m = 0; m < n_samples; m++) {
-   fprintf(f,"%f, %f \n",t_series[i],data[i]);}
+   fprintf(f,"%f, %f \n",t_series[m],data[m]);}
 //////////////////////////////   CLOSING
    if(i<n_samples){pthread_join(thread_id, NULL);} 
    fclose(f);
