@@ -34,14 +34,14 @@ void *UserGUI(void *vargp)
 
 //////////////////////////////////////////////// MAIN
 int main() {
-   int n_samples=100000;
+   int n_samples=1000;
    int n_data=2;
-   int data[100000];
-   int t_series[100000];
+   int data[1000];
+   int t_series[1000];
 
    for (int i = 0; i < n_samples; ++i)
     {data[i]=0;t_series[i]=0;}
-  
+
    int i,ml;
    i=ml=0;
    long long t_delay=1e7;
