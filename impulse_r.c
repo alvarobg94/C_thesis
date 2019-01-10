@@ -36,14 +36,14 @@ void *UserGUI(void *vargp)
 int main() {
    int n_samples=100;
    int n_data=2;
-   int data[100];
-   int t_series[100];
-
+   double data[100];
+   double t_series[100];
+   int i,ml;
+   i=ml=0;
    for (int i = 0; i < n_samples; ++i)
     {data[i]=0;t_series[i]=0;}
 
-   int i,ml;
-   i=ml=0;
+   
    long long t_delay=1e7;
    double t_s,tnext,v_out,mean_f,mean_ts,cpu_time_used;
    t_s=v_out=0.0;
