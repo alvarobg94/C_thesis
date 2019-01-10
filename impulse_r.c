@@ -34,17 +34,17 @@ void *UserGUI(void *vargp)
 
 //////////////////////////////////////////////// MAIN
 int main() {
-   int n_samples=100;
+   int n_samples=1000;
    int n_data=2;
-   double data[100];
-   double t_series[100];
+   double data[n_samples];
+   double t_series[n_samples];
    int i,ml;
    i=ml=0;
    for (int i = 0; i < n_samples; ++i)
     {data[i]=0;t_series[i]=0;}
 
    
-   long long t_delay=1e7;
+   long long t_delay=9e6;
    double t_s,tnext,v_out,mean_f,mean_ts,cpu_time_used;
    t_s=v_out=0.0;
    struct timeval t1,t2,t0,tf;
@@ -76,12 +76,12 @@ int main() {
     t_series[i]=t_s;
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
     //// Calculate next step
-    duty_cycle=duty_cycle+200;
+    duty_cycle=duty_cycle+20;
     if (duty_cycle>dc_range)
     {
       duty_cycle=0;
     }
-    printf("%f %f \n",data[i],t_series[i] );
+    printf("%f %f \n",t_series[i],data[i] );
     ////Calculate time step
     gettimeofday(&t2, NULL);
     t_s=(t2.tv_sec - t1.tv_sec) + (t2.tv_usec - t1.tv_usec) / 1000000.0f;
