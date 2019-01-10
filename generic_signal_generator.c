@@ -73,8 +73,9 @@ int main() {
     gpioPWM(test_magnet,duty_cycle );
     v_out=duty_cycle/100.00;
     d_array[i]=t_s;
+    i++;
     for (int b = 0; b < n_data-1; b++)
-     {i++;d_array[i];}
+     {i++;d_array[i]=v_out;}
 
      k++;
   /////////ENLARGING THE DATA VECTOR FOR SAVING MORE DATA
