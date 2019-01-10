@@ -79,10 +79,10 @@ int main() {
 
      k++;
   /////////ENLARGING THE DATA VECTOR FOR SAVING MORE DATA
-
+     printf("%d\n",k );
     if (k==SIZE_DATA/n_data){
      j++;
-     d_array= realloc(d_array, (SIZE_DATA*2*j) * sizeof(double));
+     d_array= realloc(d_array, (SIZE_DATA*j) * sizeof(double));
      k=0;}
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
     //// Calculate next step
@@ -121,6 +121,7 @@ int main() {
           fprintf(f, "\n");}
 //////////////////////////////   CLOSING
    pthread_join(thread_id, NULL);
+   free(d_array);
    fclose(f);
 return(0);
 
