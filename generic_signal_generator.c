@@ -36,7 +36,7 @@ void *UserGUI(void *vargp)
 int main() {
 
    int i,ml,j,k,SIZE_DATA,n_data,n_samples;
-   i=ml=k=0;j=1;n_data=2;SIZE_DATA=n_data_t*1000;
+   i=ml=k=0;j=1;n_data=2;SIZE_DATA=n_data*1000;
    double* d_array;
    d_array =calloc(SIZE_DATA,sizeof(double));
    if(d_array == NULL) {
