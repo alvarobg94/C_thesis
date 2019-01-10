@@ -35,7 +35,7 @@ void *UserGUI(void *vargp)
 //////////////////////////////////////////////// MAIN
 int main() {
 
-   int i,ml,j,k,SIZE_DATA,n_data;
+   int i,ml,j,k,SIZE_DATA,n_data,n_samples;
    i=ml=k=0;j=1;n_data=2;SIZE_DATA=n_data_t*1000;
    double* d_array;
    d_array =calloc(SIZE_DATA,sizeof(double));
@@ -79,7 +79,7 @@ int main() {
      k++;
   /////////ENLARGING THE DATA VECTOR FOR SAVING MORE DATA
 
-    if (k==SIZE_DATA/n_data_t){
+    if (k==SIZE_DATA/n_data){
      j++;
      d_array= realloc(d_array, (SIZE_DATA*j) * sizeof(double));
      k=0;}
