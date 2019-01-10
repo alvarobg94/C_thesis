@@ -34,10 +34,10 @@ void *UserGUI(void *vargp)
 
 //////////////////////////////////////////////// MAIN
 int main() {
-   int n_samples=1000;
+   int n_samples=100;
    int n_data=2;
-   int data[1000];
-   int t_series[1000];
+   int data[100];
+   int t_series[100];
 
    for (int i = 0; i < n_samples; ++i)
     {data[i]=0;t_series[i]=0;}
@@ -71,17 +71,17 @@ int main() {
      {
     gettimeofday(&t1, NULL);
     gpioPWM(test_magnet,duty_cycle );
-    v_out=duty_cycle/100.0;
+    v_out=duty_cycle/100.00;
     data[i]=v_out;
     t_series[i]=t_s;
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
     //// Calculate next step
-    duty_cycle=duty_cycle+20;
+    duty_cycle=duty_cycle+200;
     if (duty_cycle>dc_range)
     {
       duty_cycle=0;
     }
-    printf("%f %f \n",t_s,v_out );
+    printf("%f %f \n",data[i],t_series[i] );
     ////Calculate time step
     gettimeofday(&t2, NULL);
     t_s=(t2.tv_sec - t1.tv_sec) + (t2.tv_usec - t1.tv_usec) / 1000000.0f;
