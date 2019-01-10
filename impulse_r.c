@@ -76,7 +76,7 @@ int main() {
     t_series[i]=t_s;
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
     //// Calculate next step
-    duty_cycle++;
+    duty_cycle=duty_cycle+20;
     if (duty_cycle>dc_range)
     {
       duty_cycle=0;
@@ -105,7 +105,7 @@ int main() {
    for(int m = 0; m < n_samples; m++) {
    fprintf(f,"%f, %f \n",t_series[i],data[i]);}
 //////////////////////////////   CLOSING
-   pthread_join(thread_id, NULL); 
+   if(i<n_samples){pthread_join(thread_id, NULL);} 
    fclose(f);
 return(0);
 
