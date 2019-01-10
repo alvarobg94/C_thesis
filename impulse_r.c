@@ -34,17 +34,17 @@ void *UserGUI(void *vargp)
 
 //////////////////////////////////////////////// MAIN
 int main() {
-   int n_samples=1000;
+   int n_samples=10000;
    int n_data=2;
-   double data[n_samples];
-   double t_series[n_samples];
+   double data[10000];
+   double t_series[10000];
    int i,ml;
    i=ml=0;
    for (int i = 0; i < n_samples; ++i)
     {data[i]=0;t_series[i]=0;}
 
    
-   long long t_delay=9e6;
+   long long t_delay=95e4;
    double t_s,tnext,v_out,mean_f,mean_ts,cpu_time_used;
    t_s=v_out=0.0;
    struct timeval t1,t2,t0,tf;
