@@ -91,7 +91,7 @@ int main() {
     {
       duty_cycle=0;
     }
-    printf("%f %f \n",d_array[i-1],d_array[i] );
+    printf("%f %f %d \n",d_array[i-1],d_array[i],i );
     ////Calculate time step
     gettimeofday(&t2, NULL);
     t_s=(t2.tv_sec - t1.tv_sec) + (t2.tv_usec - t1.tv_usec) / 1000000.0f;
