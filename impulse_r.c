@@ -81,7 +81,7 @@ int main() {
     {
       duty_cycle=0;
     }
-
+    printf("dc is %d\n",duty_cycle );
     ////Calculate time step
     gettimeofday(&t2, NULL);
     t_s=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
@@ -97,7 +97,7 @@ int main() {
    cpu_time_used=(tf.tv_sec - t0.tv_sec) + (tf.tv_usec - t0.tv_usec) / 1000000.0f;
    mean_f=n_samples/cpu_time_used;
    mean_ts=1/mean_f;
-   printf("took %f\nmean t_s is %f", cpu_time_used,mean_ts);
+   printf("took %f\nmean t_s is %f\n", cpu_time_used,mean_ts);
   
 
    printf("Data cllection ended  with %d samples\n",i );
