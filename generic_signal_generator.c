@@ -67,14 +67,14 @@ int main() {
 
 
 
-   while((flag==1)&&(i<n_samples))/////////////////////////SIGNAL
+   while(flag==1)/////////////////////////SIGNAL
      {
     gettimeofday(&t1, NULL);
     gpioPWM(test_magnet,duty_cycle );
     v_out=duty_cycle/100.00;
     d_array[i]=t_s;
     for (int b = 0; b < n_data-1; b++)
-     {i++;d_array[i]}
+     {i++;d_array[i];}
 
      k++;
   /////////ENLARGING THE DATA VECTOR FOR SAVING MORE DATA
@@ -119,7 +119,7 @@ int main() {
          }
           fprintf(f, "\n");}
 //////////////////////////////   CLOSING
-   pthread_join(thread_id, NULL);} 
+   pthread_join(thread_id, NULL);
    fclose(f);
 return(0);
 
