@@ -71,7 +71,7 @@ int main() {
      {
     gettimeofday(&t1, NULL);
     gpioPWM(test_magnet,duty_cycle );
-    v_out=duty_cycle/100;
+    v_out=duty_cycle/100.0;
     data[i]=v_out;
     t_series[i]=t_s;
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
@@ -103,7 +103,8 @@ int main() {
    printf("Data cllection ended  with %d samples\n",i );
   /////////////////////////////////     TXT FILE GENERATION
    for(int m = 0; m < n_samples; m++) {
-   fprintf(f,"%f, %f \n",t_series[m],data[m]);}
+   fprintf(f,"%f, %f \n",t_series[m],data[m]);
+   printf("%f, %f \n",t_series[m],data[m]);}
 //////////////////////////////   CLOSING
    if(i<n_samples){pthread_join(thread_id, NULL);} 
    fclose(f);
