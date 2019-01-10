@@ -82,7 +82,7 @@ int main() {
 
     if (k==SIZE_DATA/n_data){
      j++;
-     d_array= realloc(d_array, (SIZE_DATA*j) * sizeof(double));
+     d_array= realloc(d_array, (SIZE_DATA*2*j) * sizeof(double));
      k=0;}
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
     //// Calculate next step
