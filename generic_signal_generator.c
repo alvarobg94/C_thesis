@@ -82,6 +82,7 @@ int main() {
      printf("%d\n",k );
     if (k==SIZE_DATA/n_data){
      j++;
+     printf("%d\n",SIZE_DATA*j);
      d_array= realloc(d_array, (SIZE_DATA*j) * sizeof(double));
      k=0;}
     nanosleep((const struct timespec[]){{0, t_delay}}, NULL);
